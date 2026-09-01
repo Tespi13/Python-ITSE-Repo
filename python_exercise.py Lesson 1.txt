@@ -1,0 +1,16 @@
+print("Hi! my name is Tony")
+
+name = "Tony"
+print(name)
+
+# Intentional error from the exercise:
+# name = Tony
+
+# Intentional error from the exercise:
+# 5 = 10
+
+print(5 + 3)
+
+print(5 == 5)
+print(5 == 10)
+print("Completed by, Tony Espinoza")
