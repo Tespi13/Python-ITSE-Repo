@@ -1,0 +1,109 @@
+# Interest Calculation Program 
+
+# Calculates an investment with monthly compounding interest 
+
+ 
+
+# Get and validate investment amount 
+
+investment = int(input("Enter your investment amount: ")) 
+
+ 
+
+while investment <= 0 or investment >= 50000: 
+
+    print("Invalid investment amount. Please enter an amount greater than 0 and less than 50,000.") 
+
+    investment = int(input("Enter your investment amount: ")) 
+
+ 
+
+# Get and validate interest rate 
+
+interest_rate = int(input("Enter your interest rate: ")) 
+
+ 
+
+while interest_rate <= 0 or interest_rate >= 15: 
+
+    print("Invalid interest rate. Please enter a rate greater than 0 and less than 15.") 
+
+    interest_rate = int(input("Enter your interest rate: ")) 
+
+ 
+
+# Get and validate investment duration 
+
+years = int(input("Enter the investment duration in years: ")) 
+
+ 
+
+while years <= 0: 
+
+    print("Invalid duration. Please enter a value greater than 0.") 
+
+    years = int(input("Enter the investment duration in years: ")) 
+
+ 
+
+# Convert years to months 
+
+months = years * 12 
+
+ 
+
+# Convert yearly interest rate to monthly decimal rate 
+
+monthly_interest_rate = interest_rate / 12 / 100 
+
+ 
+
+# Store the current investment total 
+
+total = 0.00 
+
+ 
+
+# Calculate the investment compounded monthly 
+
+for month in range(1, months + 1): 
+
+    total += investment 
+
+ 
+
+    interest = round(total * monthly_interest_rate, 2) 
+
+    total += interest 
+
+ 
+
+    # Check if the current month completes a full year 
+
+    if month % 12 == 0: 
+
+        current_year = month // 12 
+
+        print("Year " + str(current_year) + ": $" + str(round(total, 2))) 
+
+ 
+
+# Display final results 
+
+print("\nFinal Results") 
+
+print("-------------") 
+
+print("Years Calculated: " + str(years)) 
+
+print("Yearly Interest Rate: " + str(interest_rate) + "%") 
+
+print("Monthly Investment Amount: $" + str(round(investment, 2))) 
+
+print("Total Investment After Compounding: $" + str(round(total, 2))) 
+
+ 
+
+# Required completion statement 
+
+print("\nCompleted by, Tony Espinoza")
