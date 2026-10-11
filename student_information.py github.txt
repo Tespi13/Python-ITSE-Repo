@@ -1,0 +1,64 @@
+def main():
+    # Create an empty dictionary for student information
+    students = {}
+
+    # Add student information
+    students["Jim"] = {
+        "id": 1,
+        "gpa": 3.1,
+        "credits-completed": 97.0,
+        "grades": [80, 50, 100, 98]
+    }
+
+    students["Sarah"] = {
+        "id": 2,
+        "gpa": 3.6,
+        "credits-completed": 40.0,
+        "grades": [80, 98]
+    }
+
+    # Print all student information
+    print(students)
+
+    # List student names
+    print("\nList of Students")
+    for name in students:
+        print(name)
+
+    # Access student information
+    print("\nStudent Information")
+    print("Student\tID\tGPA\tCredits Completed\tGrades")
+
+    for name, info in students.items():
+        print(
+            f"{name}\t{info['id']}\t{info['gpa']}\t"
+            f"{info['credits-completed']}\t\t{info['grades']}"
+        )
+
+    # Access student information using items()
+    print("\nAccessing Student Information Using the Key in a Loop")
+    for name, info in students.items():
+        print(name, info)
+
+    # Remove a student
+    print("\nRemoving a Student")
+    students.pop("Sarah")
+    print(students)
+
+    # Get Jim's GPA
+    print("\nGetting Jim's GPA")
+    for name in students:
+        if name == "Jim":
+            print(students.get(name).get("gpa"))
+
+    # Clear the student registry
+    print("\nStudents have graduated, cleaning the student registry")
+    students.clear()
+    print(students)
+
+    # Identify the assignment author
+    print("\nCompleted by, Tony Espinoza")
+
+
+if __name__ == "__main__":
+    main()
