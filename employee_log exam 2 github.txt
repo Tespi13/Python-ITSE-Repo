@@ -1,0 +1,104 @@
+"""
+Organization Employee Log
+
+Creates employee records with unique names and randomly generated IDs.
+Checks for duplicate names without case sensitivity and prints each
+created employee's information.
+"""
+
+import random
+
+
+def create_employee(employee_list, existing_ids, existing_names):
+    """
+    Create and store a new employee record.
+
+    Args:
+        employee_list (list): List of employee dictionaries.
+        existing_ids (list): List of IDs already assigned.
+        existing_names (list): List of employee names already used.
+
+    Returns:
+        None
+    """
+    name = input("Enter Employee Name: ")
+
+    # Check names without case sensitivity using list comprehension.
+    while name.lower() in [existing_name.lower()
+                           for existing_name in existing_names]:
+        print("Error: Employee Already Exists")
+        name = input("Enter Employee Name: ")
+
+    existing_names.append(name)
+
+    # Generate a unique employee ID between 1 and 500.
+    employee_id = random.randint(1, 500)
+
+    while employee_id in existing_ids:
+        employee_id = random.randint(1, 500)
+
+    existing_ids.append(employee_id)
+
+    # Create and store the employee dictionary.
+    employee = {
+        "name": name,
+        "id": employee_id
+    }
+
+    employee_list.append(employee)
+
+
+def output_employee(employee):
+    """
+    Display an employee's name and ID.
+
+    Args:
+        employee (dict): Dictionary containing the employee's name and ID.
+
+    Returns:
+        None
+    """
+    print(f"Created Employee:     {employee['name']}")
+    print(f"Employee ID:          {employee['id']}")
+
+
+def main():
+    """Run the Organization Employee Log program."""
+    print("Organization Employee Log")
+    print("=" * 50)
+
+    # Create empty lists to track employee information.
+    employee_list = []
+    existing_ids = []
+    existing_names = []
+
+    # Ask how many employees will be added.
+    employee_count = int(
+        input("How many new employees are you adding: ")
+    )
+
+    print("=" * 50)
+
+    # Create each employee.
+    for _ in range(employee_count):
+        create_employee(
+            employee_list,
+            existing_ids,
+            existing_names
+        )
+        print("=" * 50)
+
+    print("\nCreated User Information")
+    print("=" * 50)
+
+    # Display every employee and their ID.
+    for employee in employee_list:
+        output_employee(employee)
+        print("=" * 50)
+
+    print("\n" + "=" * 50)
+    print("Completed by, Tony Espinoza")
+
+
+if __name__ == "__main__":
+    main()
