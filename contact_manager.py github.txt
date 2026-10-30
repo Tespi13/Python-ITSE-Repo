@@ -1,0 +1,139 @@
+# Contact Management Program
+
+def create_contact_file():
+    # Create a new CSV file and write the header
+    file = open("contacts.csv", "w")
+    file.write("Name,Phone,Email\n")
+    file.close()
+
+    print("Contact file created successfully!")
+
+
+def add_contact():
+    # Get the contact information from the user
+    name = input("Enter the contact name: ")
+    phone = input("Enter contact phone number: ")
+    email = input("Enter contact email address: ")
+
+    # Open the file in append mode to add a new contact
+    file = open("contacts.csv", "a")
+    file.write(name + "," + phone + "," + email + "\n")
+    file.close()
+
+    print("Contact added successfully!")
+
+
+def view_contacts():
+    # Open the file in read mode
+    file = open("contacts.csv", "r")
+    contacts = file.readlines()
+    file.close()
+
+    print("\nContacts Information:")
+    print("---------------------------------------------")
+    print("Name\t\tPhone\t\tEmail")
+    print("---------------------------------------------")
+
+    # Display all contacts except the header
+    for index in range(1, len(contacts)):
+        contact = contacts[index].strip().split(",")
+        print(contact[0] + "\t\t" + contact[1] + "\t" + contact[2])
+
+
+def modify_contact():
+    # Read all existing contacts into a list
+    file = open("contacts.csv", "r")
+    contacts = file.readlines()
+    file.close()
+
+    # Display existing contacts before asking which to modify
+    print("\nContacts Information:")
+    print("---------------------------------------------")
+    print("Name\t\tPhone\t\tEmail")
+    print("---------------------------------------------")
+
+    for index in range(1, len(contacts)):
+        contact = contacts[index].strip().split(",")
+        print(contact[0] + "\t\t" + contact[1] + "\t" + contact[2])
+
+    # Ask the user which contact they want to modify
+    contact_name = input("\nEnter the name of the contact you want to modify: ")
+
+    found = False
+
+    # Search the list for the selected contact
+    for index in range(1, len(contacts)):
+        contact = contacts[index].strip().split(",")
+
+        if contact[0] == contact_name:
+
+            print("\nCurrent details: Name: " + contact[0] +
+                  ", Phone: " + contact[1] +
+                  ", Email: " + contact[2])
+
+            # Ask for the new phone number and email
+            new_phone = input("Enter new phone number: ")
+            new_email = input("Enter new email address: ")
+
+            # Replace the existing contact information
+            contacts[index] = contact[0] + "," + new_phone + "," + new_email + "\n"
+
+            found = True
+            break
+
+    if found:
+        # Rewrite the file with the updated contact information
+        file = open("contacts.csv", "w")
+
+        for contact in contacts:
+            file.write(contact)
+
+        file.close()
+
+        print("Contact updated successfully!")
+
+    else:
+        print("Error: Contact not found.")
+
+
+def main():
+    # Declare the purpose of the program
+    print("Welcome to the Contact Management Program!")
+
+    selection = ""
+
+    # Continue displaying the menu until the user exits
+    while selection != "5":
+
+        print("\nPush the following options to perform the corresponding action:")
+        print("1 - Create new contact file")
+        print("2 - Add new contact")
+        print("3 - View all contacts")
+        print("4 - Modify an existing contact")
+        print("5 - Save and exit")
+
+        selection = input("Enter your selection: ")
+
+        if selection == "1":
+            create_contact_file()
+
+        elif selection == "2":
+            add_contact()
+
+        elif selection == "3":
+            view_contacts()
+
+        elif selection == "4":
+            modify_contact()
+
+        elif selection == "5":
+            print("Exiting Contact Management Program...")
+
+        else:
+            print("Invalid option. Please try again.")
+
+    print("\nCompleted by, Tony Espinoza")
+
+
+# Start the program
+main()
